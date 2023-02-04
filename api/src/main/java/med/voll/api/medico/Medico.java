@@ -7,9 +7,9 @@ import med.voll.api.endereco.Endereco;
 @Table(name = "medicos")
 @Entity(name = "Medico")
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor //cria construtor que recebe todos os campos)
-@EqualsAndHashCode(of = "id") 
+@NoArgsConstructor //gera o construtor sem argumentos, exigido pelo JPA
+@AllArgsConstructor //cria construtor que recebe todos os campos
+@EqualsAndHashCode(of = "id") //gera o equals hashcode em cima do id
 public class Medico {
 
     //faz a geração automática dos códigos via anotações
@@ -22,7 +22,7 @@ public class Medico {
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
-    @Embedded
+    @Embedded //Endereço fica numa classe separada, mas faz parte da mesma tabela de Médicos, no BD. E add outra anotação lá na classe.
     private Endereco endereco;
 
     public Medico(DadosCadastroMedico dados) {
